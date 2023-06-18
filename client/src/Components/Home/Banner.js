@@ -1,7 +1,7 @@
 import React from 'react'
 import Carousel from 'react-material-ui-carousel'
 import './banner.css';
-const data = "";
+// const data = "";
 function Banner() {
   return (
     <Carousel className='carasousel'

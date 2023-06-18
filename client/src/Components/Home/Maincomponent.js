@@ -6,7 +6,6 @@ function Maincomponent() {
     <div className='home_section'>
       <div className='banner_part'>
         <Banner/>
-        hello
       </div>
     </div>
   )

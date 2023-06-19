@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './signin.css'
-
+import {NavLink} from 'react-router-dom'
 function SignIn() {
+    const [data , setData]= useState({
+        email:"",
+        password:""
+    });
+    console.log(data);
+    const addData = (e)=>{
+        const {name , value}  = e.target;
+        setData(()=>{
+            return {
+                ...data,
+                [name]:value
+            }
+        })
+    }
     return (
         <section>
             <div className='sign_container'>
@@ -13,18 +27,24 @@ function SignIn() {
                         <h1>Sign-In</h1>
                         <div className='form_data'>
                             <label htmlFor='email' >Email</label>
-                            <input type='text' name="email" id='email' />
+                            <input type='text' 
+                            onChange={addData}
+                            value={data.email}
+                            name="email" id='email' />
                         </div>
                         <div className='form_data'>
                             <label htmlFor='password' >Password</label>
-                            <input type='password' name="password" id='password' />
+                            <input type='password'
+                            onChange={addData}
+                            value={data.password}
+                            name="password" id='password' placeholder='At least 6 characters' />
                         </div>
                         <button className='signin_btn'>Login</button>
                     </form>
                 </div>
                 <div className='create_accountinfo'>
                     <p>New to Amazon ?</p>
-                    <button>Create your Amazon Account</button>
+                   <NavLink to= "/signup" ><button>Create your Amazon Account</button></NavLink>
                 </div>
             </div>
         </section>

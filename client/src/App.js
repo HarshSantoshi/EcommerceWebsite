@@ -6,6 +6,7 @@ import Maincomponent from './Components/Home/Maincomponent';
 import SignIn from './Components/Signup_SignIn/SignIn';
 import SignUp from './Components/Signup_SignIn/SignUp';
 import Cart from './Components/cart/cart';
+import Buynow from './Components/buynow/Buynow';
 import { Routes  , Route } from 'react-router-dom';
 import Footer from './Components/footer/footer';
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path='/login' element={<SignIn/>} />
       <Route path='/signup' element={<SignUp/>} />
       <Route path='/getproductsone/:id' element={<Cart/>} />
+      <Route path='/buynow' element={<Buynow/>} />
     </Routes>
     <Footer />
 

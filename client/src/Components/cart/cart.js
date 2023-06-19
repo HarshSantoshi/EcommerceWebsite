@@ -9,7 +9,7 @@ const Cart = () => {
                 <img src='https://rukminim1.flixcart.com/image/150/150/kohigsw0/resistance-tube/c/s/e/new-adjustable-single-resistance-tube-multicolor-na-ajro-deal-original-imag2xg88mhmwxz5.jpeg?q=70' alt='cart_img' />
                 <div className='cart_btn'>
                     <button className='cart_btn1'>Add to Cart</button>
-                    <button className='cart_btn2'>Add to Cart</button>
+                    <button className='cart_btn2'>Buy now</button>
                 </div>
             </div>
             <div className='right_cart'>

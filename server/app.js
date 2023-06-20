@@ -7,10 +7,13 @@ require("./db/connection.js")
 const Product = require("./models/productSchema.js")
 const DefaultData = require('./defaultdata.js')
 const cors = require("cors");
+const Router = require('./routes/index.js');
 
 app.use(express.json());
 
 app.use(cors());
+
+app.use(Router);
 
 const port =8005;
 app.listen(port , ()=>{

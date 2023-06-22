@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './signin.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { NavLink } from 'react-router-dom'
 function SignUp() {
     const [userData , setuData] = useState({
@@ -19,6 +21,66 @@ function SignUp() {
             }
         })
     }
+
+    const senddata = async(e)=>{
+        e.preventDefault();
+        const {fname,email,mobile,password,cpassword} = userData;
+        if(fname === ""){
+            toast.warn("Name Required!", {
+                position: "top-center"
+            });
+        }
+        else if(email === ""){
+            toast.warn("Email Required!", {
+                position: "top-center"
+            });
+        }
+        else if(mobile === ""){
+            toast.warn("Mobile no Required!", {
+                position: "top-center"
+            });
+        }
+        else if(password === ""){
+            toast.warn("Password Required!", {
+                position: "top-center"
+            });
+        }
+        else if(cpassword === ""){
+            toast.warn("Confirm Your Password!", {
+                position: "top-center"
+            });
+        }
+        else{
+            const res = await fetch("signup" ,{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    fname,email,mobile,password,cpassword
+                })
+            });
+            const data = await res.json();
+            // console.log(data);
+
+            if(res.status === 422 || !data){
+                // alert("no data")
+                toast.warn("Invalid Details!", {
+                    position: "top-center"
+                });
+            }
+            else{
+                // alert("data successfully added")
+                setuData({...userData,fname:"",email:"",mobile:"",password:"",cpassword:""})
+                toast.success("Registration Successfully done!", {
+                    position: "top-center"
+                });
+            }
+        }
+
+        
+        
+    }
   return (
     <section>
             <div className='sign_container'>
@@ -26,7 +88,7 @@ function SignUp() {
                     <img src='https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png' alt='Company LOGO' />
                 </div>
                 <div className='sign_form'>
-                    <form>
+                    <form method='POST'>
                         <h1>Create Account</h1>
                         <div className='form_data'>
                             <label htmlFor='fname' >Your name</label>
@@ -63,7 +125,7 @@ function SignUp() {
                             value ={userData.cpassword}
                             name="cpassword" id='cpassword' placeholder='Re-enter Your password' />
                         </div>
-                        <button className='signin_btn'>Register</button>
+                        <button className='signin_btn' onClick={senddata}>Register</button>
                         <hr/>
                         <div className='signin_info'>
                             <p>Already have an account?</p>
@@ -72,6 +134,7 @@ function SignUp() {
                         </div>
                     </form>
                 </div>
+                <ToastContainer />
             </div>
         </section>
   )

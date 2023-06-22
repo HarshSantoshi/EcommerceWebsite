@@ -36,10 +36,12 @@ const Cart = () => {
                     <div className='right_cart'>
                         <h3>{idvData.title.shortTitle}</h3>
                         <h4>{idvData.title.longTitle}</h4>
-                        <Divider />
-                        <p className='mrp'>M.R.P : Rs {idvData.price.mrp}</p>
-                        <p>Deal of the Day: <span style={{ color: "#B12704" }}>Rs.{idvData.price.cost}</span></p>
-                        <p>You save: <span style={{ color: "#B12704" }}>Rs.{idvData.price.mrp - idvData.price.cost} ({idvData.price.discount})</span></p>
+                        <Divider /> 
+                        <p className='mrp' >M.R.P: <span style={{ textDecorationLine: "line-through" }}> ₹{idvData.price.mrp}</span>
+                        </p>
+
+                        <p>Deal of the Day: <span style={{ color: "#B12704" }}>₹{idvData.price.cost}</span></p>
+                        <p>You save: <span style={{ color: "#B12704" }}>₹{idvData.price.mrp - idvData.price.cost} ({idvData.price.discount})</span></p>
                         <div className='discount_box'>
                             <h5>Discount: <span style={{ color: "#111" }}>{idvData.discount}</span></h5>
                             <h4>Free Delivery: <span style={{ color: "#111", fontWeight: "600" }}>Oct 8 - 21</span> Details</h4>

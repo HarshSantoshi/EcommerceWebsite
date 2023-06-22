@@ -14,3 +14,14 @@ Router.get('/getproducts',async(req,res)=>{
     }
 })
 module.exports = Router;
+
+//get data for individual item
+Router.get("/getproductsone/:id" , async(req , res)=>{
+    try {
+        const {id} = req.params;
+        const individualData = await Products.findOne({id:id});
+        res.status(200).json(individualData);
+    } catch (error) {
+        res.status(400).json(individualData);
+    }
+})

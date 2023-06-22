@@ -1,28 +1,29 @@
 import React from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import {Divider} from "@mui/material";
+import { Divider } from "@mui/material";
 // import {products} from './productdata';
 import './slide.css'
+import { NavLink } from 'react-router-dom'
 
 const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3,
+
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      
+        breakpoint: { max: 1024, min: 464 },
+        items: 2,
+
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+
     }
-  };
-const Slide = ({title,products}) => {
+};
+const Slide = ({ title, products }) => {
     return (
         <div className='products_section'>
             <div className='products_deal'>
@@ -32,7 +33,7 @@ const Slide = ({title,products}) => {
             <Divider />
 
             <Carousel
-                responsive = {responsive}
+                responsive={responsive}
                 infinite={true}
                 draggable={false}
                 swipeable={true}
@@ -47,16 +48,21 @@ const Slide = ({title,products}) => {
                 containerClass="carousel-container"
             >
                 {
-                    products.map((e)=>{
+                    products.map((e) => {
+
                         return (
-                            <div className='products_items'>
-                                <div className='product_img'>
-                                    <img src={e.url} alt='productitem' />
+
+                            <NavLink to={`/getproductsone/${e.id}`}>
+                                <div className='products_items'>
+                                    <div className='product_img'>
+                                        <img src={e.url} alt='productitem' />
+                                    </div>
+                                    <p className='products_name'>{e.title.shortTitle}</p>
+                                    <p className='prducts_offer'>{e.discount}</p>
+                                    <p className='products_explore'>{e.tagline}</p>
                                 </div>
-                                <p className='products_name'>{e.title.shortTitle}</p>
-                                <p className='prducts_offer'>{e.discount}</p>
-                                <p className='products_explore'>{e.tagline}</p>
-                            </div>
+                            </NavLink>
+
                         )
                     })
                 }

@@ -2,6 +2,8 @@ const express = require('express');
 const Router = new express.Router();
 const Products = require('../models/productSchema');
 const USER = require('../models/userSchema');
+
+const bcrypt = require('bcryptjs');
 //getproductsdata api
 Router.get('/getproducts',async(req,res)=>{
     try {
@@ -53,8 +55,7 @@ Router.post("/signup" , async(req,res)=>{
             res.status(201).json(storeData);
         }
     } catch (error) {
-        console.log("error tha bhai catch me for registration time" + error.message);
-        res.status(422).send(error);
+        
     }
 })
 module.exports = Router;

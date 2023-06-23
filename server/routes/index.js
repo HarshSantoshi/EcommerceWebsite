@@ -26,6 +26,7 @@ Router.get("/getproductsone/:id" , async(req , res)=>{
 })
 //Create Account for the user
 Router.post("/signup" , async(req,res)=>{
+    // console.log(req.body);
     const {fname , email , mobile , password , cpassword} = req.body;
     if(!fname || !email || !mobile || !password || !cpassword){
         res.status(422).json({error :"Fill all the details"});
@@ -52,7 +53,8 @@ Router.post("/signup" , async(req,res)=>{
             res.status(201).json(storeData);
         }
     } catch (error) {
-        
+        console.log("error tha bhai catch me for registration time" + error.message);
+        res.status(422).send(error);
     }
 })
 module.exports = Router;

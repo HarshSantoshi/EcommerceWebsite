@@ -45,6 +45,11 @@ function SignUp() {
                 position: "top-center"
             });
         }
+        else if(password.length <6){
+            toast.warn("Enter a more strong password!", {
+                position: "top-center"
+            });
+        }
         else if(cpassword === ""){
             toast.warn("Confirm Your Password!", {
                 position: "top-center"

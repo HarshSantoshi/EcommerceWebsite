@@ -33,7 +33,13 @@ function SignIn() {
 
         const  data = await res.json();
         console.log(data);
-        if(res.status === 400 || !data){
+        if(res.status === 400 || data===null){
+            console.log("Invalid Deatails");
+            toast.warn("User Not Exist!", {
+                position: "top-center"
+            });
+        }
+        else if(res.status === 400 || !data){
             console.log("Invalid Deatails");
             toast.warn("Invalid Details!", {
                 position: "top-center"

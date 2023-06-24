@@ -50,6 +50,7 @@ function SignIn() {
             toast.success("User Logged In", {
                 position: "top-center"
             });
+            
             setData({...logdata , email :"" , password: ""});
         }
     }

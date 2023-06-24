@@ -28,7 +28,6 @@ Router.get("/getproductsone/:id" , async(req , res)=>{
 })
 //Create Account for the user
 Router.post("/signup" , async(req,res)=>{
-    // console.log(req.body);
     const {fname , email , mobile , password , cpassword} = req.body;
     if(!fname || !email || !mobile || !password || !cpassword){
         res.status(422).json({error :"Fill all the details"});
@@ -55,7 +54,33 @@ Router.post("/signup" , async(req,res)=>{
             res.status(201).json(storeData);
         }
     } catch (error) {
+        res.status(400).json({error:"Fill all the details"});
+    }
+})
+
+//login user API
+Router.post("/login" , async(req , res)=>{
+    const { email , password } = req.body;
+    console.log(req.body);
+    if(!email && !password){
+        res.status(400).json({error:"Fill all the details"});
+        console.log("Fill all details");
+    }
+    try {
+        const loginUser = await USER.findOne({email:email});
+        console.log(loginUser);
+        if(loginUser){
+            const matched = await bcrypt.compare(password,loginUser.password);
+            console.log(matched);
+            if(!matched){
+                res.status(400).json({error:"Invalid Password"});
+            }else{
+                res.status(201).json(loginUser);
+            }
+        }
         
+    } catch (error) {
+        res.status(400).json({error:"Invalid details"});
     }
 })
 module.exports = Router;

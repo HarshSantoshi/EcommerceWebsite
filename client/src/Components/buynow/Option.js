@@ -3,7 +3,7 @@ import { React } from 'react';
 const Option = ({deletedata,get}) => {
   const removedata = async (id) => {
     try {
-        const res = await fetch("/remove/${id}", {
+        const res = await fetch(`/remove/${id}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",

@@ -71,16 +71,27 @@ Router.post("/login" , async(req , res)=>{
         console.log(loginUser);
         if(loginUser){
             const matched = await bcrypt.compare(password,loginUser.password);
-            console.log(matched);
+            // console.log(matched);
+
+            //token generate
+            const token = await loginUser.generateAuthtokenn();
+            // console.log(token);
+            res.cookie("Ecommweb",token,{
+                expires:new Date(Date.now()+ 900000),
+                httponlu:true
+            })
             if(!matched){
                 res.status(400).json({error:"Invalid Password"});
             }else{
                 res.status(201).json(loginUser);
             }
         }
+        else{
+            res.status(400).json({error:"Invalid details"});
+        }
         
     } catch (error) {
-        res.status(400).json({error:"Invalid details"});
+        res.status(400).json({error:"User Not Exist"});
     }
 })
 module.exports = Router;

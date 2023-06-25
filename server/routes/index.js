@@ -115,5 +115,44 @@ Router.post('/addCart/:id' , authenticate , async(req , res)=>{
     } catch (error) {
         res.status(401).json({error:"Invalid User"});
     }
+});
+
+//get cart details
+Router.get("/cartdetails",authenticate,async(req,res)=>{
+    try{
+        const buyuser = await USER.findOne({_id:req.userID});
+        res.status(201).json(buyuser);
+    }catch(error){
+        console.log("error" + error)
+    }
+})
+
+//get valid user
+Router.get("/validateuser",authenticate,async(req,res)=>{
+    try{
+        const validuserone = await USER.findOne({_id:req.userID});
+        res.status(201).json(validuserone);
+    }catch(error){
+        console.log("error" + error)
+    }
+})
+
+//Remove item from cart
+Router.get("/remove/:id",authenticate,async(req,res)=>{
+    try{
+        const {id} = req.params;
+        console.log("harsh" + id);
+        req.rootUser.carts = req.rootUser.carts.filter((curval)=>{
+            console.log("unki" + curval.id);
+            return curval.id != id;
+        })
+        
+        req.rootUser.save();
+        res.status(201).json(req.rootUser);
+        console.log("item remove");
+    }catch(error){
+        console.log("error" + error);
+        res.status(400).json(req.rootUser);
+    }
 })
 module.exports = Router;

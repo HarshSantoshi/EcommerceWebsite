@@ -20,7 +20,7 @@ const authenticate = async(req , res , next)=>{
         next();
     } catch (error) {
         res.status(401).send("Unautherized User : No token provided");
-        console.lof(error);
+        console.log(error);
     }
 }
 module.exports = authenticate;

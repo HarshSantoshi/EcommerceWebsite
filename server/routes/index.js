@@ -141,11 +141,11 @@ Router.get("/validateuser",authenticate,async(req,res)=>{
 Router.get("/remove/:id",authenticate,async(req,res)=>{
     try{
         const {id} = req.params;
-        console.log(req.params);
+        // console.log(req.params);
         // const id ="product1";
-        console.log("harsh" + id);
+        // console.log("harsh" + id);
         req.rootUser.carts = req.rootUser.carts.filter((curval)=>{
-            console.log("unki" + curval._id);
+            // console.log("unki" + curval._id);
             return curval.id != id;
         })
         

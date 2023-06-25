@@ -67,7 +67,16 @@ userSchema.methods.generateAuthtokenn = async function(){
     }
 }
 
-
+//add to cart
+userSchema.methods.addcartData = async function(cart){
+    try {
+        this.carts = this.carts.concat(cart);
+        await this.save();
+        return this.carts;
+    } catch (error) {
+        console.log(error);
+    }
+}
 const User = new mongoose.model("USER", userSchema);
 
 

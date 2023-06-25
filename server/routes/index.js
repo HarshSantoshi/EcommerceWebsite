@@ -2,7 +2,7 @@ const express = require('express');
 const Router = new express.Router();
 const Products = require('../models/productSchema');
 const USER = require('../models/userSchema');
-
+const authenticate = require("../middleware/authenticate")
 const bcrypt = require('bcryptjs');
 //getproductsdata api
 Router.get('/getproducts',async(req,res)=>{
@@ -92,6 +92,28 @@ Router.post("/login" , async(req , res)=>{
         
     } catch (error) {
         res.status(400).json({error:"User Not Exist"});
+    }
+})
+//Aadding items to card'
+Router.post('/addCart/:id' , authenticate , async(req , res)=>{
+    try {
+        const {id} = req.params;
+        const cart = await Products.findOne({id:id});
+        console.log(cart + "car Value");
+        const userContact = await USER.findOne({_id:req.userID});
+        console.log(userContact);
+
+        if(userContact){
+            const cartData = await userContact.addcartData(cart);
+            await userContact.save();
+            console.log(cartData);
+            res.status(201).json(userContact);
+        }else{
+            res.status(401).json({error:"Invalid User"});
+        }
+
+    } catch (error) {
+        res.status(401).json({error:"Invalid User"});
     }
 })
 module.exports = Router;

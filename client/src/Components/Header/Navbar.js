@@ -5,7 +5,11 @@ import  Badge  from '@mui/material/Badge';
 import Avatar  from '@mui/material/Avatar';
 import {NavLink} from'react-router-dom'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import { useContext } from 'react';
+import { LoginContext } from '../Context/contextProvider';
 const Navbar = () => {
+  const {account ,setAccount} = useContext(LoginContext);
+  console.log(account);
   return (
     <div>
       <header>
@@ -28,7 +32,7 @@ const Navbar = () => {
                     <NavLink to ='/login'>Sign in</NavLink>
                 </div>
                 <div className='cart_btn'>
-                    <Badge badgeContent={4} color ="primary">
+                    <Badge badgeContent={ account.carts.length} color ="primary">
                         <ShoppingCartIcon id="icon"/>
                     </Badge>
                     <p>

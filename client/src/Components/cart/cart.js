@@ -1,10 +1,14 @@
 import { Divider } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import './cart.css';
+import { LoginContext } from '../Context/contextProvider';
 
 const Cart = () => {
     const { id } = useParams("");
+    const cartHistory = useNavigate("");
+
+    const {account ,setAccount} = useContext(LoginContext);
     const [idvData, setidvData] = useState([]);
 
     const getIndividualData = async () => {
@@ -22,6 +26,31 @@ const Cart = () => {
         getIndividualData();
     }, [id]);
 
+    const addTocart = async(id)=>{
+        const checkres = await fetch(`/addCart/${id}` ,{
+            method :"POST" ,
+            headers :{
+                Accept :"application/json",
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                idvData
+            }),
+            credentials:"include"
+        });
+        const data1 = await checkres.json();
+        console.log(data1);
+        if(checkres.status === 401 || !data1){
+            console.log("User Invalid");
+            alert("User invalid");
+        }else{
+            // alert("Data added in your cart successfully");
+            cartHistory("/buynow")
+            setAccount(data1);
+        }
+
+    }
+
     return (
         <div className='cart_section'>
             {idvData && Object.keys(idvData).length > 0 && (
@@ -29,7 +58,7 @@ const Cart = () => {
                     <div className='left_cart'>
                         <img src={idvData.detailUrl} alt='cart_img' />
                         <div className='cart_btn'>
-                            <button className='cart_btn1'>Add to Cart</button>
+                            <button className='cart_btn1' onClick={()=>addTocart(idvData.id)}>Add to Cart</button>
                             <button className='cart_btn2'>Buy now</button>
                         </div>
                     </div>

@@ -5,7 +5,7 @@ const USER = require('../models/userSchema');
 const authenticate = require("../middleware/authenticate")
 const bcrypt = require('bcryptjs');
 //getproductsdata api
-Router.get('/getproducts',async(req,res)=>{
+Router.get('/getproducts', async (req, res) => {
     try {
         const productsData = await Products.find();
         // console.log("From postman",productsData);
@@ -17,161 +17,138 @@ Router.get('/getproducts',async(req,res)=>{
 
 
 //get data for individual item
-Router.get("/getproductsone/:id" , async(req , res)=>{
+Router.get("/getproductsone/:id", async (req, res) => {
     try {
-        const {id} = req.params;
-        const individualData = await Products.findOne({id:id});
+        const { id } = req.params;
+        const individualData = await Products.findOne({ id: id });
         res.status(200).json(individualData);
     } catch (error) {
         res.status(400).json(individualData);
     }
 })
 //Create Account for the user
-Router.post("/signup" , async(req,res)=>{
-    const {fname , email , mobile , password , cpassword} = req.body;
-    if(!fname || !email || !mobile || !password || !cpassword){
-        res.status(422).json({error :"Fill all the details"});
+Router.post("/signup", async (req, res) => {
+    const { fname, email, mobile, password, cpassword } = req.body;
+    if (!fname || !email || !mobile || !password || !cpassword) {
+        res.status(422).json({ error: "Fill all the details" });
         console.log("Some Fields are not filled");
     };
     try {
-        const preuser = await USER.findOne({email:email});
-        if(preuser){
+        const preuser = await USER.findOne({ email: email });
+        if (preuser) {
             res.status(422).json({
-                error :"User already exist with same email id "
+                error: "User already exist with same email id "
             })
         }
-        else if(password!=cpassword){
+        else if (password != cpassword) {
             res.status(422).json({
-                error :"Password does not matches "
+                error: "Password does not matches "
             })
         }
-        else{
+        else {
             const newUser = new USER({
-                fname , email , mobile , password , cpassword
+                fname, email, mobile, password, cpassword
             });
             const storeData = await newUser.save();
             console.log(storeData);
             res.status(201).json(storeData);
         }
     } catch (error) {
-        res.status(400).json({error:"Fill all the details"});
+        res.status(400).json({ error: "Fill all the details" });
     }
 })
 
 //login user API
-Router.post("/login" , async(req , res)=>{
-    const { email , password } = req.body;
-    console.log(req.body);
-    if(!email && !password){
-        res.status(400).json({error:"Fill all the details"});
+Router.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    if (!email && !password) {
+        res.status(400).json({ error: "Fill all the details" });
         console.log("Fill all details");
     }
     try {
-        const loginUser = await USER.findOne({email:email});
+        const loginUser = await USER.findOne({ email: email });
         console.log(loginUser);
-        if(loginUser){
-            const matched = await bcrypt.compare(password,loginUser.password);
-            // console.log(matched);
+        if (loginUser) {
+            const matched = await bcrypt.compare(password, loginUser.password);
 
-            //token generate
-            const token = await loginUser.generateAuthtokenn();
-            // console.log(token);
-            res.cookie("Ecommweb",token,{
-                expires:new Date(Date.now()+ 900000),
-                httponlu:true
-            })
-            if(!matched){
-                res.status(400).json({error:"Invalid Password"});
-            }else{
+            if (!matched) {
+                res.status(400).json({ error: "Invalid Password" });
+            } else {
+                //token generate
+                const token = await loginUser.generateAuthtokenn();
+                // console.log(token);
+                res.cookie("Ecommweb", token, {
+                    expires: new Date(Date.now() + 900000),
+                    httponlu: true
+                })
                 res.status(201).json(loginUser);
             }
         }
-        else{
-            res.status(400).json({error:"Invalid details"});
+        else {
+            res.status(400).json({ error: "Invalid details" });
         }
-        
+
     } catch (error) {
-        res.status(400).json({error:"User Not Exist"});
+        res.status(400).json({ error: "User Not Exist" });
     }
 })
 //Aadding items to card'
-Router.post('/addCart/:id' , authenticate , async(req , res)=>{
+Router.post('/addCart/:id', authenticate, async (req, res) => {
     try {
-        const {id} = req.params;
-        const cart = await Products.findOne({id:id});
+        const { id } = req.params;
+        const cart = await Products.findOne({ id: id });
         console.log(cart + "car Value");
-        const userContact = await USER.findOne({_id:req.userID});
+        const userContact = await USER.findOne({ _id: req.userID });
         console.log(userContact);
 
-        if(userContact){
+        if (userContact) {
             const cartData = await userContact.addcartData(cart);
             await userContact.save();
             console.log(cartData);
             res.status(201).json(userContact);
-        }else{
-            res.status(401).json({error:"Invalid User"});
+        } else {
+            res.status(401).json({ error: "Invalid User" });
         }
 
     } catch (error) {
-        res.status(401).json({error:"Invalid User"});
+        res.status(401).json({ error: "Invalid User" });
     }
 });
 
 //get cart details
-Router.get("/cartdetails",authenticate,async(req,res)=>{
-    try{
-        const buyuser = await USER.findOne({_id:req.userID});
+Router.get("/cartdetails", authenticate, async (req, res) => {
+    try {
+        const buyuser = await USER.findOne({ _id: req.userID });
         res.status(201).json(buyuser);
-    }catch(error){
+    } catch (error) {
         console.log("error" + error)
     }
 })
 
 //get valid user
-Router.get("/validateuser",authenticate,async(req,res)=>{
-    try{
-        const validuserone = await USER.findOne({_id:req.userID});
+Router.get("/validateuser", authenticate, async (req, res) => {
+    try {
+        const validuserone = await USER.findOne({ _id: req.userID });
         res.status(201).json(validuserone);
-    }catch(error){
+    } catch (error) {
         console.log("error" + error)
     }
 })
 
 //Remove item from cart
-Router.get("/remove/:id",authenticate,async(req,res)=>{
-    try{
-        const {id} = req.params;
-        // console.log(req.params);
-        // const id ="product1";
-        // console.log("harsh" + id);
-        req.rootUser.carts = req.rootUser.carts.filter((curval)=>{
-            // console.log("unki" + curval._id);
+Router.get("/remove/:id", authenticate, async (req, res) => {
+    try {
+        const { id } = req.params;
+        req.rootUser.carts = req.rootUser.carts.filter((curval) => {
             return curval.id != id;
         })
-        
+
         req.rootUser.save();
         res.status(201).json(req.rootUser);
         console.log("item remove");
-    }catch(error){
+    } catch (error) {
         console.log("error" + error);
         res.status(400).json(req.rootUser);
     }
 })
-
-// for user logout
-Router.get("/logout", authenticate, async (req, res) => {
-    try {
-        req.rootUser.tokens = req.rootUser.tokens.filter((curelem) => {
-            return curelem.token !== req.token
-        });
-
-        res.clearCookie("Ecommweb", { path: "/" });
-        req.rootUser.save();
-        res.status(201).json(req.rootUser.tokens);
-        console.log("user logout");
-
-    } catch (error) {
-        console.log("error for user logout");
-    }
-});
 module.exports = Router;

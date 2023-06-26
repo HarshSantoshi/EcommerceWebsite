@@ -3,13 +3,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './cart.css';
 import { LoginContext } from '../Context/contextProvider';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Cart = () => {
     const { id } = useParams("");
     const cartHistory = useNavigate("");
 
     const {account ,setAccount} = useContext(LoginContext);
-    const [idvData, setidvData] = useState([]);
+    const [idvData, setidvData] = useState("");
 
     const getIndividualData = async () => {
         const response = await fetch(`/getproductsone/${id}`, {
@@ -23,7 +24,8 @@ const Cart = () => {
     };
 
     useEffect(() => {
-        getIndividualData();
+        setTimeout( getIndividualData ,500)
+       
     }, [id]);
 
     const addTocart = async(id)=>{
@@ -80,6 +82,14 @@ const Cart = () => {
                     </div>
                 </div>
             )}
+
+            {
+                !idvData ?   <div className='circle'>
+                <CircularProgress/>
+                <h2>Loading...</h2>
+              </div> :
+              ""
+            }
         </div>
     );
 };

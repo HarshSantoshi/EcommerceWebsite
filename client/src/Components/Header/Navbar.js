@@ -15,6 +15,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { ToastContainer, toast } from 'react-toastify';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
@@ -30,6 +33,9 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const [text, setText] = useState("");
+  const [listopen , setlistOpen] = useState(true);
+  const {products} = useSelector(state => state.getproductsdata);
   const [dropen, setDropen] = useState(false)
 
   const getdetailsvaliduser = async () => {
@@ -79,6 +85,10 @@ const Navbar = () => {
       history("/")
     }
   }
+  const getText = (items)=>{
+    setText(items);
+    setlistOpen(false);
+  }
   useEffect(() => {
     getdetailsvaliduser()
   }, [])
@@ -102,10 +112,29 @@ const Navbar = () => {
             </div>
             <div>
               <div className='nav_searchbar'>
-                <input type="text" name="" id="" placeholder="Search Your Products" />
+                <input type="text" name="" id="" placeholder="Search Your Products" 
+                onChange={(e)=>getText(e.target.value)}
+                />
                 <div className='search_icon'>
                   <SearchIcon />
                 </div>
+                {
+                  text && 
+                  <List className='extrasearch' hidden={listopen}>
+                    {
+                      products.filter(product => product.title.longTitle.toLowerCase().includes(text.toLowerCase())).map(product=>(
+                        <NavLink to= {`/getproductsone/${product.id}`} onClick={()=>setlistOpen(true)}>  
+                           <ListItem>
+                          {
+                            product.title.longTitle
+                          }
+                        </ListItem>
+                        </NavLink>
+                       
+                      ))
+                    }
+                  </List>
+                }
               </div>
             </div>
           </div>
@@ -155,6 +184,7 @@ const Navbar = () => {
               <MenuItem onClick={handleClose}>My account</MenuItem>
               {
                 account ? <MenuItem onClick={handleClose} onClick={logoutuser}><LogoutIcon style={{ fontSize: 16, marginRight: 16 }} />Logout</MenuItem> : ""
+                
               }
 
             </Menu>

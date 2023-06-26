@@ -157,4 +157,21 @@ Router.get("/remove/:id",authenticate,async(req,res)=>{
         res.status(400).json(req.rootUser);
     }
 })
+
+// for user logout
+Router.get("/logout", authenticate, async (req, res) => {
+    try {
+        req.rootUser.tokens = req.rootUser.tokens.filter((curelem) => {
+            return curelem.token !== req.token
+        });
+
+        res.clearCookie("Ecommweb", { path: "/" });
+        req.rootUser.save();
+        res.status(201).json(req.rootUser.tokens);
+        console.log("user logout");
+
+    } catch (error) {
+        console.log("error for user logout");
+    }
+});
 module.exports = Router;

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './cart.css';
 import { LoginContext } from '../Context/contextProvider';
 import CircularProgress from '@mui/material/CircularProgress';
+import { ToastContainer, toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 
 
@@ -11,7 +12,7 @@ const Cart = () => {
     const { id } = useParams("");
     const cartHistory = useNavigate("");
 
-    const {account ,setAccount} = useContext(LoginContext);
+    const { account, setAccount } = useContext(LoginContext);
     const [idvData, setidvData] = useState("");
 
     const getIndividualData = async () => {
@@ -26,38 +27,42 @@ const Cart = () => {
     };
 
     useEffect(() => {
-        setTimeout( getIndividualData ,500)
-       
+        setTimeout(getIndividualData, 500)
+
     }, [id]);
     const location = useLocation();
 
     useEffect(() => {
-      window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     }, [location]);
 
-    const addTocart = async(id)=>{
-        const checkres = await fetch(`/addCart/${id}` ,{
-            method :"POST" ,
-            headers :{
-                Accept :"application/json",
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-                idvData
-            }),
-            credentials:"include"
-        });
-        const data1 = await checkres.json();
-        console.log(data1);
-        if(checkres.status === 401 || !data1){
-            console.log("User Invalid");
-            alert("User invalid");
-        }else{
-            // alert("Data added in your cart successfully");
-            cartHistory("/buynow")
-            setAccount(data1);
+    const addTocart = async (id) => {
+        if (account) {
+            const checkres = await fetch(`/addCart/${id}`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idvData
+                }),
+                credentials: "include"
+            });
+            const data1 = await checkres.json();
+            console.log(data1);
+            if (checkres.status === 401 || !data1) {
+                console.log("User Invalid");
+                alert("User invalid");
+            } else {
+                cartHistory("/buynow");
+                setAccount(data1);
+            }
+        } else {
+            toast.warn("User Not Logged in!", {
+                position: "top-center"
+            });
         }
-
     }
 
     return (
@@ -67,14 +72,14 @@ const Cart = () => {
                     <div className='left_cart'>
                         <img src={idvData.detailUrl} alt='cart_img' />
                         <div className='cart_btn'>
-                            <button className='cart_btn1' onClick={()=>addTocart(idvData.id)}>Add to Cart</button>
+                            <button className='cart_btn1' onClick={() => addTocart(idvData.id)}>Add to Cart</button>
                             <button className='cart_btn2'>Buy now</button>
                         </div>
                     </div>
                     <div className='right_cart'>
                         <h3>{idvData.title.shortTitle}</h3>
                         <h4>{idvData.title.longTitle}</h4>
-                        <Divider /> 
+                        <Divider />
                         <p className='mrp' >M.R.P: <span style={{ textDecorationLine: "line-through" }}> ₹{idvData.price.mrp}</span>
                         </p>
 
@@ -91,11 +96,11 @@ const Cart = () => {
             )}
 
             {
-                !idvData ?   <div className='circle'>
-                <CircularProgress/>
-                <h2>Loading...</h2>
-              </div> :
-              ""
+                !idvData ? <div className='circle'>
+                    <CircularProgress />
+                    <h2>Loading...</h2>
+                </div> :
+                    ""
             }
         </div>
     );

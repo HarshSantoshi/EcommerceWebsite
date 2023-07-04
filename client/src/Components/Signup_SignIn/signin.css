@@ -15,7 +15,7 @@ section{
 }
 
 .sign_header img{
-    width: 100px;
+    width: 110px;
     margin: 8px 0px;
     cursor: pointer;
 }
@@ -23,7 +23,7 @@ section{
 .sign_form{
     border: 1px solid #c9c9c9;
     padding: 10px 30px;
-    margin-top: -20px;
+    margin-top: -10px;
     border-radius: 5px;
 }
 
@@ -54,7 +54,7 @@ section{
     margin-top: 7px;
     margin-bottom: 23px;
     width: 100%;
-    background: #f3d078;
+    background: rgb(219, 151, 48);
     cursor: pointer;
     border:1px solid #9c7e31;
     height: 29px;

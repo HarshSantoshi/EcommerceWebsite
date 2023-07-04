@@ -1,11 +1,11 @@
 footer{
     position: relative;
     top: 60px;
-    background-color:#232F3E;
+    background-color:rgb(219, 151, 48);
 }
 
 footer .footer_container{
-    color: #fff;
+    color: white;
     display: flex;
     /* flex-wrap: wrap; */
     justify-content: space-evenly;
@@ -30,8 +30,11 @@ footer .footer_container .footr_details_one p{
 
 
 footer .lastdetails{
-    background-color: #131A22;
+    background-color: #f1bf74;
     height:20vh;
+}
+footer .lastdetails img{
+    width: 110px;
 }
 
 footer img{

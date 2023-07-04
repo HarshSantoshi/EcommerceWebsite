@@ -19,6 +19,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
+import shopzone from "../image/shopzone_logo.png";
 
 const Navbar = () => {
   const { account, setAccount } = useContext(LoginContext);
@@ -108,7 +109,7 @@ const Navbar = () => {
               <Rightheader logclose={handledrclose} />
             </Drawer>
             <div className='navlogo'>
-              <NavLink to="/"><img src='https://clipground.com/images/amazon-logo-clipart-transparent-background-8.png' alt='Logo' /></NavLink>
+              <NavLink to="/"><img src={shopzone} alt='Logo' /></NavLink>
             </div>
             <div>
               <div className='nav_searchbar'>

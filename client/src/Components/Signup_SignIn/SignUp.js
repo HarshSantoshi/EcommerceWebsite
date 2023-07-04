@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import './signin.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import shopzone from "../image/shopzone_logo.png";
 function SignUp() {
     const [userData , setuData] = useState({
         fname:"",
@@ -90,7 +91,7 @@ function SignUp() {
     <section>
             <div className='sign_container'>
                 <div className='sign_header'>
-                    <img src='https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png' alt='Company LOGO' />
+                    <img src={shopzone} alt='Company LOGO' />
                 </div>
                 <div className='sign_form'>
                     <form method='POST'>

@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LoginContext } from '../Context/contextProvider';
 import { useContext } from 'react';
+import shopzone from "../image/shopzone_logo.png";
 function SignIn() {
     const [logdata, setData] = useState({
         email: "",
@@ -61,7 +62,7 @@ function SignIn() {
         <section>
             <div className='sign_container'>
                 <div className='sign_header'>
-                    <img src='https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png' alt='Company LOGO' />
+                    <img src={shopzone} alt='Company LOGO' />
                 </div>
                 <div className='sign_form'>
                     <form method='POST'>
@@ -84,8 +85,8 @@ function SignIn() {
                     </form>
                 </div>
                 <div className='create_accountinfo'>
-                    <p>New to Amazon ?</p>
-                    <NavLink to="/signup" ><button>Create your Amazon Account</button></NavLink>
+                    <p>New to Shopzone ?</p>
+                    <NavLink to="/signup" ><button>Create your Shopzone Account</button></NavLink>
                 </div>
             </div>
             <ToastContainer />

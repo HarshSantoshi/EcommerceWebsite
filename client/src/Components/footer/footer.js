@@ -1,5 +1,6 @@
 import React from 'react'
 import "./footer.css";
+import shopzone from "../image/shopzone_logo.png";
 const year = new Date().getFullYear();
 const Footer = () => {
     return(
@@ -32,8 +33,8 @@ const Footer = () => {
                 </div>
             </div>
             <div className="lastdetails">
-                <img src="https://clipground.com/images/amazon-logo-clipart-transparent-background-8.png" alt="logo" />
-                <p>Conditions of Use & Sale &nbsp; &nbsp;&nbsp;  Privacy Notice  &nbsp; &nbsp;&nbsp; Interest-Based Ads  &nbsp; &nbsp;&nbsp;  © 1996-{year}, Amazon.com, Inc. or its affiliates</p>
+                <img src={shopzone} alt="logo" />
+                <p>Conditions of Use & Sale &nbsp; &nbsp;&nbsp;  Privacy Notice  &nbsp; &nbsp;&nbsp; Interest-Based Ads  &nbsp; &nbsp;&nbsp;  © 2023-{year}, Shopzone.com, Inc. or its affiliates</p>
             </div>
         </footer>
     )

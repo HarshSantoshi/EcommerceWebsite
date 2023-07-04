@@ -75,7 +75,7 @@ const Cart = () => {
                         <p>You save: <span style={{ color: "#B12704" }}>₹{idvData.price.mrp - idvData.price.cost} ({idvData.price.discount})</span></p>
                         <div className='discount_box'>
                             <h5>Discount: <span style={{ color: "#111" }}>{idvData.discount}</span></h5>
-                            <h4>Free Delivery: <span style={{ color: "#111", fontWeight: "600" }}>Oct 8 - 21</span> Details</h4>
+                            <h4>Free Delivery: <span style={{ color: "#111", fontWeight: "600" }}>August 8 - 21</span> Details</h4>
                             <p>Fastest Delivery: <span style={{ color: "#111", fontWeight: "600" }}>Tomorrow 11AM</span></p>
                         </div>
                         <p className='description'>About the Items: <span style={{ color: "#565659", fontSize: 14, fontWeight: 500, letterSpacing: "0.4px" }}>{idvData.description}</span></p>

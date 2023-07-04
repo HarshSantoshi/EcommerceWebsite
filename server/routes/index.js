@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 Router.get('/getproducts', async (req, res) => {
     try {
         const productsData = await Products.find();
-        // console.log("From postman",productsData);
+   
         res.status(201).json(productsData);
     } catch (error) {
         console.log("error", error.message);
@@ -76,7 +76,7 @@ Router.post("/login", async (req, res) => {
             } else {
                 //token generate
                 const token = await loginUser.generateAuthtokenn();
-                // console.log(token);
+        
                 res.cookie("Ecommweb", token, {
                     expires: new Date(Date.now() + 900000),
                     httponlu: true
@@ -97,14 +97,14 @@ Router.post('/addCart/:id', authenticate, async (req, res) => {
     try {
         const { id } = req.params;
         const cart = await Products.findOne({ id: id });
-        console.log(cart + "car Value");
+   
         const userContact = await USER.findOne({ _id: req.userID });
-        console.log(userContact);
+    
 
         if (userContact) {
             const cartData = await userContact.addcartData(cart);
             await userContact.save();
-            console.log(cartData);
+            
             res.status(201).json(userContact);
         } else {
             res.status(401).json({ error: "Invalid User" });
@@ -145,10 +145,24 @@ Router.get("/remove/:id", authenticate, async (req, res) => {
 
         req.rootUser.save();
         res.status(201).json(req.rootUser);
-        console.log("item remove");
+       
     } catch (error) {
         console.log("error" + error);
         res.status(400).json(req.rootUser);
     }
 })
+Router.get("/logout", authenticate, async (req, res) => {
+    try {
+        req.rootUser.tokens = req.rootUser.tokens.filter((curelem) => {
+            return curelem.token !== req.token
+        });
+
+        res.clearCookie("Ecommweb", { path: "/" });
+        req.rootUser.save();
+        res.status(201).json(req.rootUser.tokens);
+
+    } catch (error) {
+        console.log(error + "jwt provide then logout");
+    }
+});
 module.exports = Router;

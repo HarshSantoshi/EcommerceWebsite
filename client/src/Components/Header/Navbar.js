@@ -78,12 +78,12 @@ const Navbar = () => {
     if (res2.status !== 201) {
       console.log("error");
     } else {
-      console.log("data valid");
       toast.success("Logout Successfully", {
         position: "top-center"
       });
-      setAccount(false);
       history("/")
+      setAccount(false);
+    
     }
   }
   const getText = (items)=>{
@@ -106,7 +106,7 @@ const Navbar = () => {
               <MenuIcon style={{ color: "#fff" }} />
             </IconButton>
             <Drawer open={dropen} onClose={handledrclose}>
-              <Rightheader logclose={handledrclose} />
+              <Rightheader logclose={handledrclose} logoutuser ={logoutuser}/>
             </Drawer>
             <div className='navlogo'>
               <NavLink to="/"><img src={shopzone} alt='Logo' /></NavLink>
@@ -184,8 +184,7 @@ const Navbar = () => {
             >
               <MenuItem onClick={handleClose}>My account</MenuItem>
               {
-                account ? <MenuItem onClick={handleClose} onClick={logoutuser}><LogoutIcon style={{ fontSize: 16, marginRight: 16 }} />Logout</MenuItem> : ""
-                
+                account ? <MenuItem  onClick={logoutuser}><LogoutIcon style={{ fontSize: 16, marginRight: 16 }} />Logout</MenuItem> : ""
               }
 
             </Menu>

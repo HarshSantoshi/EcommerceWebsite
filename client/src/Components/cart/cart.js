@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './cart.css';
 import { LoginContext } from '../Context/contextProvider';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useLocation } from 'react-router-dom';
+
 
 const Cart = () => {
     const { id } = useParams("");
@@ -27,6 +29,11 @@ const Cart = () => {
         setTimeout( getIndividualData ,500)
        
     }, [id]);
+    const location = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [location]);
 
     const addTocart = async(id)=>{
         const checkres = await fetch(`/addCart/${id}` ,{

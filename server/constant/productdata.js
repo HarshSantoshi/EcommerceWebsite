@@ -84,6 +84,24 @@ const products = [
         discount: 'From ₹499', 
         tagline: 'Kubra, Nova & more' 
     }
+    ,
+    { 
+        id: 'product6',
+        url: 'https://th.bing.com/th/id/OIP.LBMUHdY2wI_HJT08ESBT_QHaE8?pid=ImgDet&rs=1', 
+        detailUrl: 'https://th.bing.com/th/id/OIP.LBMUHdY2wI_HJT08ESBT_QHaE8?pid=ImgDet&rs=1',
+        title: {
+            shortTitle: 'Gear Cycle',
+            longTitle: 'HERCULES TOP GEAR-S27 XR2 27.5 T Mountain Cycle  (21 Gear, White)'
+        }, 
+        price: {
+            mrp: 22000,
+            cost: 14099,
+            discount: '35%'
+        },
+        description: 'single-speed Sprint Monk Hero Cycle that comes with nylon tyres and Bontrager wheels. The HRX Rustler comes with a carrier to carry goods and has wired brakes. If you’re looking for a cycle for your little one, the Eastman BMX Limber is an ideal option.  Although most bicycles are delivered unassembled, it is easy to assemble them at home. You can purchase gear cycles online on Flipkart from brands such as Hero, Hercules',
+        discount: 'Extra 10% Off', 
+        tagline: 'Deal of the day' 
+    }
 ]
 
 module.exports = products;

@@ -4,6 +4,7 @@ const Products = require('../models/productSchema');
 const USER = require('../models/userSchema');
 const authenticate = require("../middleware/authenticate")
 const bcrypt = require('bcryptjs');
+const PaymentController = require('../controllers/PaymentController')
 //getproductsdata api
 Router.get('/getproducts', async (req, res) => {
     try {
@@ -165,4 +166,10 @@ Router.get("/logout", authenticate, async (req, res) => {
         console.log(error + "jwt provide then logout");
     }
 });
+
+// Payment order
+Router.post('/orders' , PaymentController.orders)
+
+// Payment verify
+Router.post('/verify' , PaymentController.verify)
 module.exports = Router;

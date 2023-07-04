@@ -6,7 +6,7 @@ import { LoginContext } from '../Context/contextProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import { ToastContainer, toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
-
+import axios from 'axios';
 
 const Cart = () => {
     const { id } = useParams("");
@@ -64,6 +64,21 @@ const Cart = () => {
             });
         }
     }
+    // payment
+    const handleOpenRazorpay = (data) => {
+        
+    }
+    const handlePayment = (amount)=>{
+        const _data = { amount : amount }
+        axios.post('http://localhost:3000/orders',_data)
+        .then(res => {
+            console.log(res.data, "order done")
+            handleOpenRazorpay(res.data)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
 
     return (
         <div className='cart_section'>
@@ -73,7 +88,7 @@ const Cart = () => {
                         <img src={idvData.detailUrl} alt='cart_img' />
                         <div className='cart_btn'>
                             <button className='cart_btn1' onClick={() => addTocart(idvData.id)}>Add to Cart</button>
-                            <button className='cart_btn2'>Buy now</button>
+                            <button className='cart_btn2' onClick={()=>handlePayment(idvData.price.cost)}>Buy now</button>
                         </div>
                     </div>
                     <div className='right_cart'>

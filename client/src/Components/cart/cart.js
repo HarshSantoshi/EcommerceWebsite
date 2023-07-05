@@ -66,18 +66,29 @@ const Cart = () => {
     }
     // payment
     const handleOpenRazorpay = (data) => {
-        
+        const options = {
+            key : process.env.KEY_ID,
+            amount : Number( data.amount ),
+            currency : data.currency , 
+            name:'ShopZone',
+            description : 'Shopping becomes easy' ,
+            order_id : data.id ,
+            handler:function(response){
+                console.log(response ,"function is running");
+            }
+        };
+        const rzpay = new window.Razorpay(options);
+        rzpay.open();
     }
-    const handlePayment = (amount)=>{
-        const _data = { amount : amount }
-        axios.post('http://localhost:3000/orders',_data)
-        .then(res => {
-            console.log(res.data, "order done")
-            handleOpenRazorpay(res.data)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+    const handlePayment = (amount) => {
+        const _data = { amount: amount };
+        axios.post('http://localhost:3000/orders', _data)
+            .then(res => {
+                handleOpenRazorpay(res.data.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (
@@ -88,7 +99,7 @@ const Cart = () => {
                         <img src={idvData.detailUrl} alt='cart_img' />
                         <div className='cart_btn'>
                             <button className='cart_btn1' onClick={() => addTocart(idvData.id)}>Add to Cart</button>
-                            <button className='cart_btn2' onClick={()=>handlePayment(idvData.price.cost)}>Buy now</button>
+                            <button className='cart_btn2' onClick={() => handlePayment(idvData.price.cost)}>Buy now</button>
                         </div>
                     </div>
                     <div className='right_cart'>

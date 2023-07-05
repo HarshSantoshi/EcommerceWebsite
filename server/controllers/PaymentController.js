@@ -1,12 +1,13 @@
 const Razorpay = require('razorpay');
-const KEY_ID = 'rzp_test_01nKb89Wentqid';
-const KEY_SECRET = 'bucNgkoBxQ6nMvPJRjdKn6mn';
+
+const KEY_ID = process.env.KEY_ID;
+const KEY_SECRET = process.env.KEY_SECRET;
 
 module.exports.orders = (req,res) => {
     let instance = new Razorpay({ key_id: KEY_ID, key_secret: KEY_SECRET })
 
     var options = {
-        amount: req.body.amount * 100,  // amount in the smallest currency unit
+        amount: req.body.amount * 100, 
         currency: "INR",
     };
     instance.orders.create(options, function (err, order) {

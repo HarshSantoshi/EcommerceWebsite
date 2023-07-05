@@ -4,10 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './cart.css';
 import { LoginContext } from '../Context/contextProvider';
 import CircularProgress from '@mui/material/CircularProgress';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-
+import shopzone from "../image/shopzone_logo.png";
 const Cart = () => {
     const { id } = useParams("");
     const cartHistory = useNavigate("");
@@ -72,9 +72,16 @@ const Cart = () => {
             currency : data.currency , 
             name:'ShopZone',
             description : 'Shopping becomes easy' ,
+            image : shopzone ,
             order_id : data.id ,
             handler:function(response){
-                console.log(response ,"function is running");
+                axios.post('http://localhost:3000/verify' , {response: response})
+                    .then(res=>{
+                        console.log(res);
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
             }
         };
         const rzpay = new window.Razorpay(options);

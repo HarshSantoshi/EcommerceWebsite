@@ -1,5 +1,5 @@
 header{
-    background-color: #f1bf74;
+    background-color: #0047ab;
     width:100%;
     height: 60px;
     position: fixed;
@@ -45,7 +45,7 @@ header nav .left input{
 }
 
 header nav .left .search_icon{
-    background-color: rgb(219, 151, 48);
+    background-color: #408af1;
     height: 40px;
     width: 40px;
     display: flex;
@@ -87,7 +87,7 @@ header nav .right .nav_btn a{
 
 
 header nav .right .nav_btn a:hover{
-    border: 1px solid white;
+    border: transparent;
 }
 
 header nav .right .cart_btn{
@@ -104,7 +104,7 @@ header nav .right .cart_btn{
 }
 
 header nav .right .cart_btn:hover{
-    border: 1px solid white;
+    border: transparent;
 }
 
 header nav .right .cart_btn #icon{

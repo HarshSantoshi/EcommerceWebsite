@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LoginContext } from '../Context/contextProvider';
 import { useContext } from 'react';
-import shopzone from "../image/shopzone_logo.png";
+import shopzone from "../image/shopzone_logo2.png";
 function SignIn() {
     const [logdata, setData] = useState({
         email: "",

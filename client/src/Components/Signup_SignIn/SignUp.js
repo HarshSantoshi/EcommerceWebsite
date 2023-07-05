@@ -3,7 +3,7 @@ import './signin.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { NavLink } from 'react-router-dom';
-import shopzone from "../image/shopzone_logo.png";
+import shopzone from "../image/shopzone_logo2.png";
 function SignUp() {
     const [userData , setuData] = useState({
         fname:"",

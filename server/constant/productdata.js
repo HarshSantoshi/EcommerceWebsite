@@ -78,8 +78,8 @@ const products = [
         }, 
         price: {
             mrp: 4999,
-            cost: 369,
-            discount: '93%'
+            cost: 3690,
+            discount: '23%'
         },
         description: 'Men casual shirt || men shirt casual || men shirt casual stylish || men shirt casual stylish cotton',
         discount: 'Grab Now', 

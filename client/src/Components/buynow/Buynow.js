@@ -65,7 +65,13 @@ const Buynow = () => {
                     </div>
                     <Right iteam={cartdata}/>
                 </div>
-            </div> : ""
+            </div> : 
+            <div style={{minHeight:200}}>
+                <h1 style={{marginTop:200 , textAlign:'center'}}>
+                    No Item in the cart
+                </h1>
+
+            </div>
         }
 
         </>

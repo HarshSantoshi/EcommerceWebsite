@@ -51,7 +51,6 @@ Router.post("/signup", async (req, res) => {
                 fname, email, mobile, password, cpassword
             });
             const storeData = await newUser.save();
-            console.log(storeData);
             res.status(201).json(storeData);
         }
     } catch (error) {
@@ -68,7 +67,6 @@ Router.post("/login", async (req, res) => {
     }
     try {
         const loginUser = await USER.findOne({ email: email });
-        console.log(loginUser);
         if (loginUser) {
             const matched = await bcrypt.compare(password, loginUser.password);
 

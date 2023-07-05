@@ -50,7 +50,6 @@ const Cart = () => {
                 credentials: "include"
             });
             const data1 = await checkres.json();
-            console.log(data1);
             if (checkres.status === 401 || !data1) {
                 console.log("User Invalid");
                 alert("User invalid");

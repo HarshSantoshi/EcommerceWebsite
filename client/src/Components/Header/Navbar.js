@@ -49,7 +49,6 @@ const Navbar = () => {
       credentials: "include"
     });
     const data = await res.json();
-    console.log(data);
     if (res.status !== 201) {
       console.log("error");
     } else {
@@ -74,7 +73,6 @@ const Navbar = () => {
       credentials: "include"
     });
     const data2 = await res2.json();
-    console.log(data2);
     if (res2.status !== 201) {
       console.log("error");
     } else {

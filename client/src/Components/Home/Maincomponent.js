@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 
 function Maincomponent() {
   const {products} = useSelector(state => state.getproductsdata);
-  console.log(products);
 
   const dispatch = useDispatch();
 

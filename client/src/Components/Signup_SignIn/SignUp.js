@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect } from 'react'
 import './signin.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { NavLink } from 'react-router-dom';
 import shopzone from "../image/shopzone_logo2.png";
+import { useLocation } from 'react-router-dom';
 function SignUp() {
     const [userData , setuData] = useState({
         fname:"",
@@ -12,7 +13,7 @@ function SignUp() {
         password:"",
         cpassword:""
     });
-    console.log(userData);
+
     const addData =(e)=>{
         const {name , value} = e.target; 
         setuData(()=>{
@@ -22,6 +23,11 @@ function SignUp() {
             }
         })
     }
+    const location = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
+
 
     const senddata = async(e)=>{
         e.preventDefault();
@@ -67,16 +73,16 @@ function SignUp() {
                 })
             });
             const data = await res.json();
-            // console.log(data);
+          
 
             if(res.status === 422 || !data){
-                // alert("no data")
+           
                 toast.warn("Invalid Details!", {
                     position: "top-center"
                 });
             }
             else{
-                // alert("data successfully added")
+          
                 setuData({...userData,fname:"",email:"",mobile:"",password:"",cpassword:""})
                 toast.success("Registration Successfully done!", {
                     position: "top-center"

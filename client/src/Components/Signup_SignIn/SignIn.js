@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import './signin.css'
 import { NavLink } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { LoginContext } from '../Context/contextProvider';
 import { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import shopzone from "../image/shopzone_logo2.png";
 function SignIn() {
     const [logdata, setData] = useState({
         email: "",
         password: ""
     });
-    console.log(logdata);
     const { account, setAccount } = useContext(LoginContext);
     const addData = (e) => {
         const { name, value } = e.target;
@@ -22,6 +22,11 @@ function SignIn() {
             }
         })
     }
+    const location = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
+
     const sendData = async (e) => {
         e.preventDefault();
         const { email, password } = logdata;
@@ -36,7 +41,7 @@ function SignIn() {
         });
 
         const data = await res.json();
-        console.log(data);
+    
         if(res.status === 400 || data===null){
             console.log("Invalid Deatails");
             toast.warn("User Not Exist!", {

@@ -7,7 +7,7 @@ import Subtotal from "./Subtotal";
 
 const Buynow = () => {
     const [cartdata, setCartdata] = useState("");
-    // console.log(cartdata);
+    
     const getdatabuy = async () => {
         const res = await fetch("/cartdetails", {
             method: "GET",

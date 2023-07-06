@@ -60,9 +60,6 @@ const Right = ({ iteam }) => {
         axios.post('http://localhost:3000/verify', { response: response })
           .then(res => {
             console.log(res, "payment done");
-            iteam.forEach((item) => {
-              removeData(item.id);
-            });
           })
           .catch(err => {
             console.log(err)
@@ -90,7 +87,7 @@ const Right = ({ iteam }) => {
       <div className="cost_right">
         <p>Your order is eligible for FREE Delivery. </p> <br />
         <span style={{ color: "#565959" }}> Select this option at checkout. Details</span>
-        <h3>Subtotal ({iteam.length} items): <span style={{ fontWeight: "700" }}>{price}.00</span></h3>
+        <h3>Subtotal ({iteam.length} items): <span style={{ fontWeight: "700" }}>₹{price}.00</span></h3>
         <button className="rightbuy_btn" onClick={() => handlePayment(price)}>Proceed to Buy</button>
         <div className="emi">
           Emi available

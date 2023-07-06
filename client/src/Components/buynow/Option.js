@@ -18,7 +18,6 @@ const Option = ({deletedata,get}) => {
         });
 
         const data = await res.json();
-        // console.log(data);
 
         if (res.status === 400 || !data) {
             console.log("error");

@@ -68,7 +68,7 @@ const Buynow = () => {
                 </div>
             </div> :
                 <div style={{ minHeight: 'auto' }}>
-                    <div style={{ minHeight: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center' , marginTop:100}}>
+                    <div style={{ minHeight: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 100 }}>
                         <img src={EmptyCart} alt="img" />
                     </div>
 

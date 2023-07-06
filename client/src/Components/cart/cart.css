@@ -5,12 +5,17 @@
     height: 100vh;
     /* background-color: rgb(245, 239, 239); */
 }
-
+.cart_section .back_button{
+    color: #408af1;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: large;
+}
 .cart_section .cart_container{
     width: 95%;
     margin:0 auto;
     display: flex;
-    padding:50px 20px;
+    padding:20px 20px;
 }
 
 .cart_container .left_cart{

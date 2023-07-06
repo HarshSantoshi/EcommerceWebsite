@@ -1,4 +1,4 @@
-const products = [
+ export const products = [
     
     { 
         id: 'product6',
@@ -286,5 +286,3 @@ const products = [
         reviews: 97  
     }
 ]
-
-module.exports = products;

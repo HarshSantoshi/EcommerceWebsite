@@ -8,6 +8,14 @@ import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import shopzone from "../image/shopzone_logo.png";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { NavLink } from 'react-router-dom';
+import { ItemRating } from '../ratingItem/RatingItem';
+import styled from '@emotion/styled';
+
+const StarStyle = styled(ItemRating)`
+margin-bottom:20px;
+`
 const Cart = () => {
     const { id } = useParams("");
     const cartHistory = useNavigate("");
@@ -99,6 +107,9 @@ const Cart = () => {
 
     return (
         <div className='cart_section'>
+            <div className='back_button'>
+              <NavLink to="/"><ArrowBackIcon /></NavLink>
+            </div>
             {idvData && Object.keys(idvData).length > 0 && (
                 <div className='cart_container'>
                     <div className='left_cart'>
@@ -118,7 +129,8 @@ const Cart = () => {
                         <p>Deal of the Day: <span style={{ color: "#B12704" }}>₹{idvData.price.cost}</span></p>
                         <p>You save: <span style={{ color: "#B12704" }}>₹{idvData.price.mrp - idvData.price.cost} ({idvData.price.discount})</span></p>
                         <div className='discount_box'>
-                            <h5>Discount: <span style={{ color: "#111" }}>{idvData.discount}</span></h5>
+                            <h5>Discount: <span style={{ color: "#111" }}>{idvData.price.discount}</span></h5>
+                           <h5> <StarStyle value = { idvData.rating } text = { idvData.reviews }/></h5>
                             <h4>Free Delivery: <span style={{ color: "#111", fontWeight: "600" }}>August 8 - 21</span> Details</h4>
                             <p>Fastest Delivery: <span style={{ color: "#111", fontWeight: "600" }}>Tomorrow 11AM</span></p>
                         </div>

@@ -9,5 +9,4 @@ const DefaultData = async()=>{
         console.log("error" , error.message);
     }
 };
-
 module.exports = DefaultData;

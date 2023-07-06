@@ -286,5 +286,4 @@ const products = [
         reviews: 97  
     }
 ]
-
 module.exports = products;

@@ -15,7 +15,9 @@ const products = [
         },
         description: 'single-speed Sprint Monk Hero Cycle that comes with nylon tyres and Bontrager wheels. The HRX Rustler comes with a carrier to carry goods and has wired brakes. If you’re looking for a cycle for your little one, the Eastman BMX Limber is an ideal option.  Although most bicycles are delivered unassembled, it is easy to assemble them at home. You can purchase gear cycles online on Flipkart from brands such as Hero, Hercules',
         discount: 'Extra 10% Off', 
-        tagline: 'Deal of the day' 
+        tagline: 'Deal of the day',
+        rating: 4.5,
+        reviews: 48 
     },
     { 
         id: 'product7',
@@ -32,7 +34,9 @@ const products = [
         },
         description: 'Modern style meets streetwear fashion in the INTERFLEX Modern sneaker. These runners feature a bold contemporary design with an exaggerated tongue and contrast EVA foam midsole for a striking appearance. Ground-contact EVA at the outsole adds a lightweight feel and excellent cushioning, keeping these runners comfortable, no matter where your day takes you. DETAILS  Comfortable style by PUMA details Signature PUMA design elements',
         discount: 'Extra 10% Off', 
-        tagline: 'Deal of the day' 
+        tagline: 'Deal of the day',
+        rating: 4.6,
+        reviews: 54  
     },
     { 
         id: 'product8',
@@ -49,7 +53,9 @@ const products = [
         },
         description: 'The Molife Sense 500, a brilliant smartwatch with a beautiful large display. Say hello to the infinity 1.7-inch display with 2.5D curved edges. Thanks to seamless Bluetooth 5.0 connectivity, you wont have to keep waiting. Bring a change to your outfit every day with changeable straps. A splash of color every day keeps the boredom away.',
         discount: 'Grab Now', 
-        tagline: 'Best Seller' 
+        tagline: 'Best Seller',
+        rating: 4.2,
+        reviews: 37  
     },
     { 
         id: 'product9',
@@ -66,7 +72,9 @@ const products = [
         },
         description: 'Processor: Intel Core i7-1360P(up to 5.0 GHz with Intel Turbo Boost Technology(2g)18 MB L3 cache, 12 cores, 16 threads)|Memory: 16 GB DDR4-3200 MHz RAM (2 x 8 GB)|Storage:1 TB PCIe NVMe M.2 SSD Operating System & Preinstalled Software: Windows 11 Home 64 Single Language – HP recommends Windows 11 Pro for business |Microsoft Office Home & Student 2021',
         discount: 'Grab Now', 
-        tagline: 'Best Seller' 
+        tagline: 'Best Seller',
+        rating: 4.8,
+        reviews: 110  
     },
     { 
         id: 'product10',
@@ -83,7 +91,9 @@ const products = [
         },
         description: 'Men casual shirt || men shirt casual || men shirt casual stylish || men shirt casual stylish cotton',
         discount: 'Grab Now', 
-        tagline: 'Best Seller' 
+        tagline: 'Best Seller',
+        rating: 3.7,
+        reviews: 20  
     },
     { 
         id: 'product11',
@@ -100,7 +110,9 @@ const products = [
         },
         description: 'Shop from a wide range of Cargos from Urban Legends. Perfect for your everyday use you could pair it with a stylish t-shirt or shirt to complete the look.',
         discount: 'Grab Now', 
-        tagline: 'Best Seller' 
+        tagline: 'Best Seller',
+        rating: 4,
+        reviews: 40  
     },
     { 
         id: 'product12',
@@ -117,7 +129,9 @@ const products = [
         },
         description: 'Playback- The mighty 500mAh battery capacity offers a superior playback time of up to 20 Hours Drivers- Its 50mm dynamic drivers help pump out immersive audio all day long, Charging Time 2.5 hours.',
         discount: 'Grab Now', 
-        tagline: 'Best Seller' 
+        tagline: 'Best Seller',
+        rating: 4.8,
+        reviews: 330  
     },
     { 
         id: 'product13',
@@ -134,7 +148,9 @@ const products = [
         },
         description: 'About the Author: Akshat Gupta is a national bestselling author, a TEDx speaker and an excelling screenwriter and dialogue writer in the Indian film industry. The Hidden Hindu series, authored by him, has sold over 1 lakh copies, with each book a national bestseller. Akshat is well known in the publishing industry, as well as in the Indian film industry, with a number of films and web-series signed on his name.',
         discount: 'Grab Now', 
-        tagline: 'Best Seller' 
+        tagline: 'Best Seller',
+        rating: 3.4,
+        reviews: 30  
     },
     { 
         id: 'product14',
@@ -151,7 +167,9 @@ const products = [
         },
         description: 'Veirdo White Oversized Cotton Crew Neck T-Shirt with Chest Print for Men.',
         discount: 'Grab Now', 
-        tagline: 'Best Seller' 
+        tagline: 'Best Seller',
+        rating: 4.4,
+        reviews: 55  
     },
     { 
         id: 'product1',
@@ -168,7 +186,9 @@ const products = [
         },
         description: 'This electric kettle from Pigeon will soon become a travelers best friend, a hostelite saviour and an answer to all the midnight cravings. With this handy appliance, you can boil water and use it to make instant noodles, packet soup, coffee and green tea.',
         discount: 'Extra 10% Off', 
-        tagline: 'Deal of the day' 
+        tagline: 'Deal of the day',
+        rating: 3.9,
+        reviews: 60  
     },
     { 
         id: 'product2',
@@ -185,7 +205,9 @@ const products = [
         },
         description: 'This non-stick sandwich toaster .easy to use and very handy. Directly hold over flame to make tasty toasts and toasted sandwiches. Specially designed by keeping your needs in mind, the sandwich maker makes whatever youre doing simpler, smarter and better',
         discount: 'From 99+5% Off', 
-        tagline: 'Pestige, Nova & more' 
+        tagline: 'Pestige, Nova & more',
+        rating: 3.6,
+        reviews: 45  
     },
     { 
         id: 'product3',
@@ -202,7 +224,9 @@ const products = [
         },
         description: 'This unique product can tone your back muscles, reduce belly fat, improve blood circulation and also improves your body posture. It increases the stamina, energy and vitality of the body. The elastic resistance of the rubber training rope can be used to train and exercise in whichever way you want, according to your physical needs.',
         discount: 'Upto 70% Off', 
-        tagline: 'Deal of the Day' 
+        tagline: 'Deal of the Day',
+        rating: 3.5,
+        reviews: 47  
     },
     { 
         id: 'product4',
@@ -219,7 +243,9 @@ const products = [
         },
         description: 'The Molife Sense 500, a brilliant smartwatch with a beautiful large display. Say hello to the infinity 1.7-inch display with 2.5D curved edges. Thanks to seamless Bluetooth 5.0 connectivity, you wont have to keep waiting. Bring a change to your outfit every day with changeable straps. A splash of color every day keeps the boredom away.',
         discount: 'Grab Now', 
-        tagline: 'Best Seller' 
+        tagline: 'Best Seller',
+        rating: 4.6,
+        reviews: 102  
     },
     { 
         id: 'product5',
@@ -236,7 +262,9 @@ const products = [
         },
         description: '',
         discount: 'From ₹499', 
-        tagline: 'Kubra, Nova & more' 
+        tagline: 'Kubra, Nova & more',
+        rating: 4.5,
+        reviews: 48  
     },
     { 
         id: 'product15',
@@ -253,7 +281,9 @@ const products = [
         },
         description: 'World fastest 0.02 Sec AF speed with 425 phase detection and contrast points;24.2MP, EXMOR CMOS sensor with outstanding light sensitivity 11 FPS continuous shooting with AF/AE;180 degree tilt able touch LCD screen',
         discount: 'Grab Now', 
-        tagline: 'Best Seller' 
+        tagline: 'Best Seller',
+        rating: 4.5,
+        reviews: 97  
     }
 ]
 

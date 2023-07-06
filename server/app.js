@@ -16,7 +16,7 @@ app.use(cors());
 
 app.use(Router);
 
-const port =8005;
+const port = process.env.PORT || 8005;
 app.listen(port , ()=>{
     console.log("Server is runnning on the port " , port);
 });

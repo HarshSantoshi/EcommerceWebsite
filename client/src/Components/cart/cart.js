@@ -82,7 +82,7 @@ const Cart = () => {
             image : shopzone ,
             order_id : data.id ,
             handler:function(response){
-                axios.post('http://localhost:3000/verify' , {response: response})
+                axios.post('https://shopzonebackend.onrender.com/verify' , {response: response})
                     .then(res=>{
                         console.log(res);
                     })
@@ -96,7 +96,7 @@ const Cart = () => {
     }
     const handlePayment = (amount) => {
         const _data = { amount: amount };
-        axios.post('http://localhost:3000/orders', _data)
+        axios.post('https://shopzonebackend.onrender.com/orders', _data)
             .then(res => {
                 handleOpenRazorpay(res.data.data)
             })
